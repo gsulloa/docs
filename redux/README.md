@@ -42,9 +42,68 @@ Tiene tres principales funciones asociadas a los principios.
                                     prop2: val2
                                     }}
     ```
-- Para no usar un unico gran *reducer*, lo que haremos es componerlos con **combineReducers***. En este caso, llama a cada reducer con el estado de nombre *state.reducer*
+- Para no usar un unico gran *reducer*, lo que haremos es componerlos con **combineReducers**. En este caso, llama a cada reducer con el estado de nombre *state.reducer*
     ```js
     const { combineReducers } = Redux;
     const app = combineReducers({ reducer1, reducer2, reducer3 })
     ```
-
+- **Presentational Component**: Componente usado solo como visualización. Idealmente no le pondrémos funciones *hardcoded*, ingresaremos sus funciones como parametros. No es obligatorio, pero es muy recomendado como buena práctica.
+- **Container Component**: Se preocupa del resto, entregando las *props* pertinentes para que los *presentational component* entreguen la vista indicada. Cada uno de estos componentes se subscribe a la *store*
+- Usarmos container components cuando tengamos componentes que lo único que hacen es entregar *props*. Al usarlos, reduciremos la complejidad y ordenaremos el código.
+- No es conveniente usar la *store* como variable global.
+- **Provider**: Es un componente creado, cuya unica función es entregarle información a sus hijos. Esto lo harémos con la función *getChildContext*. De esta forma, el *Provider* queda:
+    ```js
+    class Provider extends Component{
+        getChildContext(){
+            return(){
+                store: this.props.store
+            };
+        }
+        render(){
+            return this.props.children
+        }
+    }
+    
+    // Los siguientes sirven para poder pasar el contexto hacia abajo en el árbol
+    // Genera un "Agujero de gusano"
+    // Se usa solo en los componentes que usaran la store
+    Provider.childContextTypes = {
+        store: React.PropTypes.object
+    }
+    class Component1 extends Component{
+        /*...*/
+        render(){
+            const { store } = this.context
+            /*...*/
+        }
+    }
+    Component1.childContextTypes = {
+        store: React.PropTypes.object
+    }
+    
+    ReatDOM.render(
+        <Provider store={STORE}>
+            <App />
+        </Provider>
+    )
+    ```
+- El provider esta entregado por *react-redux*
+- Además, podemos usar el metodo *connect* de *react-redux* para generar componentes.
+   ```js
+   // Props que se entregaran formadas a partir de state
+     const mapStateToProps = (state, ownProps) => {
+        return {
+            props: generatePropsFromState(state...)
+        }
+     }
+     // Props que se entregaran que usan la store (dispatch)
+     const mapDispatchToProps = (dispatch, ownProps){
+        return{
+            methodWithDispatch: func()
+        }
+     }
+     const { connect } = ReactRedux;
+     const ContainerComponent = connect(mapStateToProps, mapDispatchToProps)(PresentationalComponent)
+     // Si usamos connect(), entregara por defecto un objeto vacio para los de estado y dispatch como función.
+    ```
+- *Action Creator*: Son funciones que entregan los objetos de las acciones, de forma de no dejar esta logica en los componentes. Se colocan al inicio del codigo como buena práctica y así se sabe que acciones se pueden realizar
