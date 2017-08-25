@@ -1,0 +1,21 @@
+# React Packages
+----
+### Packeges Útiles:
+- react: Paquete principal de React.
+- react-dom: Paquete principal de React que permite trabajar con el *DOM*
+- react-helmet: Entrega la componente ```<Helmet />``` que permite inyectar dinamicamente elementos al header del html
+- react-redux: Paquete que entrega componentes utiles para juntar React y Redux
+- react-router: Entrega las funcionalidades basicas para trabajar con la URL
+- history: Entrega el historial para manejar las rutas
+- react-router-dom: Componentes de DOM para manejar las rutas
+- react-router-redux: Unifica React, Redux y el enrutador
+- redux: Paquete que permite trabajar con metodología redux, dejando todo en un estado unico que cambia con acciones
+- redux-logger:
+- redux-persist:
+- redux-promise-middleware:
+- redux-thunk: Permite llamar desde acciones a dispatchs (para acciones asincronas), u otros componentes.
+- reselect: Permite optimizar la generacion de props con acciones
+- styled-components: Crea componentes basicos de html con vistas especificas
+- popsicle: HTTP requests
+- prop-types: Define los componentes obligatorios que deben tener algunos componentes
+- lodash: Forma más eficiente de trabajar listas y objetos
