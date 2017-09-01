@@ -56,10 +56,10 @@ Tiene tres principales funciones asociadas a los principios.
                                     }}
     ```
 - Para no usar un unico gran *reducer*, lo que haremos es componerlos con **combineReducers**. En este caso, llama a cada reducer con el estado de nombre *state.reducer*
-    ```js
+  ```js
     const { combineReducers } = Redux;
     const app = combineReducers({ reducer1, reducer2, reducer3 })
-    ```
+  ```
 - **Presentational Component**: Componente usado solo como visualización. Idealmente no le pondrémos funciones *hardcoded*, ingresaremos sus funciones como parametros. No es obligatorio, pero es muy recomendado como buena práctica.
 - **Container Component**: Se preocupa del resto, entregando las *props* pertinentes para que los *presentational component* entreguen la vista indicada. Cada uno de estos componentes se subscribe a la *store*
 - Usarmos container components cuando tengamos componentes que lo único que hacen es entregar *props*. Al usarlos, reduciremos la complejidad y ordenaremos el código.
