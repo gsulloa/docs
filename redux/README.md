@@ -1,7 +1,8 @@
 # Redux
-----
 "*Redux is a predictable state container for JavaScript apps.*" ([Redux](http://redux.js.org/)).
 Redux busca mantener toda la información necesaria en un estado unico, basandose en la ídea de que un estado tiene una única vista.
+
+Las siguientes notas fueron tomadas del tutorial [Getting Started with Redux](https://egghead.io/courses/getting-started-with-redux) de egghead.io
 
 ## Store
 Es el objeto que contiene el estado actuál de la página.
@@ -19,7 +20,19 @@ Tiene tres principales funciones asociadas a los principios.
 ## Notas importantes
 - Hay un único árbol de estados
 - Cada cambio de estado es producido por una acción
-- **Reducer**: Recibe como entrada un estado y una acción. Retorna un nuevo estado. Es importante notar que se CREA un nuevo estado, NO se modifica (función pura).
+- **Reducer**: Recibe como entrada un estado y una acción. Retorna un nuevo estado. Es importante notar que se CREA un nuevo estado, NO se modifica (función pura). Un reducer tipico se ve:
+     ```js
+     function counter(state=0, action){
+          switch(action.type){
+               case "INCREMENT_COUNTER":
+                    return state+1;
+               case "DECREMENT_COUNTER":
+                    return state-1;
+               default:
+                    return state
+          }
+     }
+     ```
 - **Store**: Objeto que contendrá el estado actual.
 -  Para evitar modificar los array entregado se puede hacer: 
      ```js
@@ -51,7 +64,7 @@ Tiene tres principales funciones asociadas a los principios.
 - **Container Component**: Se preocupa del resto, entregando las *props* pertinentes para que los *presentational component* entreguen la vista indicada. Cada uno de estos componentes se subscribe a la *store*
 - Usarmos container components cuando tengamos componentes que lo único que hacen es entregar *props*. Al usarlos, reduciremos la complejidad y ordenaremos el código.
 - No es conveniente usar la *store* como variable global.
-- **Provider**: Es un componente creado, cuya unica función es entregarle información a sus hijos. Esto lo harémos con la función *getChildContext*. De esta forma, el *Provider* queda:
+- **Provider**: Es un componente creado, cuya unica función es entregarle información a sus hijos. Esto lo harémos con la función *getChildContext*. El provider esta entregado por *react-redux*, pero para entenderlo mejor se ve así:
     ```js
     class Provider extends Component{
         getChildContext(){
@@ -87,9 +100,8 @@ Tiene tres principales funciones asociadas a los principios.
         </Provider>
     )
     ```
-- El provider esta entregado por *react-redux*
-- Además, podemos usar el metodo *connect* de *react-redux* para generar componentes.
-   ```js
+- Además, podemos usar el metodo *connect* de *react-redux* para generar componentes. Con este, los componentes creados tendrán acceso directo a todo el estado de la *store*, y a hacer *dispatch* dentro del componente.
+   ```js
    // Props que se entregaran formadas a partir de state
      const mapStateToProps = (state, ownProps) => {
         return {
@@ -106,4 +118,11 @@ Tiene tres principales funciones asociadas a los principios.
      const ContainerComponent = connect(mapStateToProps, mapDispatchToProps)(PresentationalComponent)
      // Si usamos connect(), entregara por defecto un objeto vacio para los de estado y dispatch como función.
     ```
-- *Action Creator*: Son funciones que entregan los objetos de las acciones, de forma de no dejar esta logica en los componentes. Se colocan al inicio del codigo como buena práctica y así se sabe que acciones se pueden realizar
+- *Action Creator*: Son funciones que entregan los objetos de las acciones, de forma de no dejar esta logica en los componentes. Se colocan al inicio del codigo como buena práctica y así se sabe que acciones se pueden realizar. Uno común se ve:
+     ```js
+     function incrementCounter(){
+          return({
+               type: "INCREMENT_COUNTER"
+          })
+     }
+     ```
