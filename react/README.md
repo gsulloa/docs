@@ -99,8 +99,10 @@ Lo más importante:
 
 ## Pasos posteriores
 Luego de ver los tutoriales y haber jugado más con React, seguiremos con entender [Redux](http://redux.js.org/). De esto, tengo notas en el siguiente [link](https://github.com/gsulloa/docs/tree/master/redux).
-Luego, para hacer una aplicación con ReactJS y redux, propóngo los pasos en el siguiente [doc](https://github.com/gsulloa/docs/blob/master/react/react-redux.md).
-Finalemente, para hacer una aplicación con ReactJS, redux y ReactRouter (para utilizar las rutas), veremos el siguiente [link](https://github.com/gsulloa/docs/blob/master/react/react-router-redux.md)
+
+Luego, para hacer una aplicación con ReactJS y redux, propóngo los pasos en el siguiente doc: [ReactJS + Redux](https://github.com/gsulloa/docs/blob/master/react/react-redux.md).
+
+Finalemente, para hacer una aplicación con ReactJS, redux y ReactRouter (para utilizar las rutas), veremos el siguiente doc: [ReactJS + Redux + React Router](https://github.com/gsulloa/docs/blob/master/react/react-router-redux.md)
 ## Packeges Útiles:
 Aca hay una serie de packages utiles, algunos vienen con React, y otros deberemos incorporarlos según necesidad. En algunos importante, agregue el link de su repositorio para revisarlos.
 - react: Paquete principal de React.
