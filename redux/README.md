@@ -101,7 +101,7 @@ Tiene tres principales funciones asociadas a los principios.
     )
   ```
 - Además, podemos usar el metodo *connect* de *react-redux* para generar componentes. Con este, los componentes creados tendrán acceso directo a todo el estado de la *store*, y a hacer *dispatch* dentro del componente.
-   ```js
+  ```js
      // Props que se entregaran formadas a partir de state
        const mapStateToProps = (state, ownProps) => {
           return {
@@ -117,7 +117,7 @@ Tiene tres principales funciones asociadas a los principios.
        const { connect } = ReactRedux;
        const ContainerComponent = connect(mapStateToProps, mapDispatchToProps)(PresentationalComponent)
        // Si usamos connect(), entregara por defecto un objeto vacio para los de estado y dispatch como función.
-    ```
+  ```
 - *Action Creator*: Son funciones que entregan los objetos de las acciones, de forma de no dejar esta logica en los componentes. Se colocan al inicio del codigo como buena práctica y así se sabe que acciones se pueden realizar. Uno común se ve:
    ```js
      function incrementCounter(){
