@@ -8,9 +8,9 @@ Las siguientes notas fueron tomadas del tutorial [Getting Started with Redux](ht
 Es el objeto que contiene el estado actuál de la página.
 Para su creación basta con hacer:
 ```js
-const { createStore } = Redux;
-// import { createStore } from 'redux';
-const store = createStore(REDUCER);
+  const { createStore } = Redux;
+  // import { createStore } from 'redux';
+  const store = createStore(REDUCER);
 ```
 Tiene tres principales funciones asociadas a los principios.
 - **dispatch(*action*)**: Ejecuta una acción.
@@ -65,7 +65,7 @@ Tiene tres principales funciones asociadas a los principios.
 - Usarmos container components cuando tengamos componentes que lo único que hacen es entregar *props*. Al usarlos, reduciremos la complejidad y ordenaremos el código.
 - No es conveniente usar la *store* como variable global.
 - **Provider**: Es un componente creado, cuya unica función es entregarle información a sus hijos. Esto lo harémos con la función *getChildContext*. El provider esta entregado por *react-redux*, pero para entenderlo mejor se ve así:
-    ```js
+  ```js
     class Provider extends Component{
         getChildContext(){
             return(){
@@ -99,30 +99,30 @@ Tiene tres principales funciones asociadas a los principios.
             <App />
         </Provider>
     )
-    ```
+  ```
 - Además, podemos usar el metodo *connect* de *react-redux* para generar componentes. Con este, los componentes creados tendrán acceso directo a todo el estado de la *store*, y a hacer *dispatch* dentro del componente.
    ```js
-   // Props que se entregaran formadas a partir de state
-     const mapStateToProps = (state, ownProps) => {
-        return {
-            props: generatePropsFromState(state...)
-        }
-     }
-     // Props que se entregaran que usan la store (dispatch)
-     const mapDispatchToProps = (dispatch, ownProps){
-        return{
-            methodWithDispatch: func()
-        }
-     }
-     const { connect } = ReactRedux;
-     const ContainerComponent = connect(mapStateToProps, mapDispatchToProps)(PresentationalComponent)
-     // Si usamos connect(), entregara por defecto un objeto vacio para los de estado y dispatch como función.
+     // Props que se entregaran formadas a partir de state
+       const mapStateToProps = (state, ownProps) => {
+          return {
+              props: generatePropsFromState(state...)
+          }
+       }
+       // Props que se entregaran que usan la store (dispatch)
+       const mapDispatchToProps = (dispatch, ownProps){
+          return{
+              methodWithDispatch: func()
+          }
+       }
+       const { connect } = ReactRedux;
+       const ContainerComponent = connect(mapStateToProps, mapDispatchToProps)(PresentationalComponent)
+       // Si usamos connect(), entregara por defecto un objeto vacio para los de estado y dispatch como función.
     ```
 - *Action Creator*: Son funciones que entregan los objetos de las acciones, de forma de no dejar esta logica en los componentes. Se colocan al inicio del codigo como buena práctica y así se sabe que acciones se pueden realizar. Uno común se ve:
-     ```js
+   ```js
      function incrementCounter(){
           return({
                type: "INCREMENT_COUNTER"
           })
      }
-     ```
+   ```
