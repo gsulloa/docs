@@ -1,6 +1,6 @@
 # React-Router-Redux application
 ---
-Estos son los pasos para crear una aplicación con react-router-redux. Considero ya iniciada una aplicación con [react-router](https://github.com/gsulloa/docs/blob/master/react/react-redux.md)
+Estos son los pasos para crear una aplicación con react-router-redux. Considero ya iniciada una aplicación con [react-redux](https://github.com/gsulloa/docs/blob/master/react/react-redux.md)
 
 1. Agregar React Router Redux
     ```sh
