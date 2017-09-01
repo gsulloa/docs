@@ -64,6 +64,13 @@ Lo más importante:
     return(<h1>Hello {name} </h1>)
   }
   ```
+- Para trabajar con el estado del componente:
+  ```js
+    // Obtener datos
+    this.state.data
+    // Modificar datos
+    this.setState({data: "content"})
+  ```
 - Para renderizar usamos:
   ```js
     import ReactDOM from 'react-dom';
