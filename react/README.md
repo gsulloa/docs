@@ -82,17 +82,15 @@ Lo más importante:
     class ToDoList extends Component{
         state = {list: []}
         onAddElement = () => {
-            const newList = this.state.list;
-            newList.push("new element");
             this.setState({
-                list: newList
+                list: [...this.state.list, {id: this.state.list[this.state.list.length-1].id+1, content: "new element"}]
               })
         }
         render = () => {
             return(
                 <div>
                     <ul>
-                    {this.state.list.map(element => <Element content={element} />)}
+                    {this.state.list.map(element => <Element content={element.content} key={element.id} />)}
                     </ul>
                     <Button addElement={this.onAddElement} />
                 </div>
